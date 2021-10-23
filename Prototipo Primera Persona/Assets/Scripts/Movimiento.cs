@@ -43,7 +43,7 @@ public class Movimiento : MonoBehaviour
         x = Input.GetAxis("Mouse X") * sensivilidad;
         y = Input.GetAxis("Mouse Y") * sensivilidad ;
         xRotacion -= y;
-        xRotacion = Mathf.Clamp(xRotacion, -90f, 31f);
+        xRotacion = Mathf.Clamp(xRotacion, -90f, 41f);  //limitador de movimiento de camara
 
         //movimiento camara
         FPSCamera.transform.localRotation = Quaternion.Euler(xRotacion, 0, 0);

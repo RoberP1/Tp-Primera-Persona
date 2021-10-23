@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private Transform target;
     private Rigidbody rb;
     private bool alive;
+    [SerializeField] private GameObject yo;
     void Start()
     {
         alive = true;
@@ -39,7 +40,15 @@ public class Enemy : MonoBehaviour
         if (alive && health <= 0)
         {
             agent.enabled = rb.isKinematic = alive = false;
-            rb.AddForce(-transform.forward * 250f);
+            rb.AddRelativeTorque(transform.right * 5,ForceMode.Impulse);
+            StartCoroutine(DelayDestruccion(3));
         }
+    }
+
+    IEnumerator DelayDestruccion(int delay)
+    {
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(delay);
+        Destroy(yo);
     }
 }
