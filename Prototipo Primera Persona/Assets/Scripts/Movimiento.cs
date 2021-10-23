@@ -5,15 +5,17 @@ using UnityEngine;
 public class Movimiento : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    
     Rigidbody rb = new Rigidbody(); //jugador
 
-    public GameObject FPSCamera; //cabeza
+    
 
     public float vel = 1; //velocidad movimiento
 
     public float sensivilidad = 1; //sensivilidad del mouse
 
+    [SerializeField] private GameObject FPSCamera; //cabeza
+    
     //imputs
     private float horizontalInput;
     private float verticalInput;
@@ -25,6 +27,7 @@ public class Movimiento : MonoBehaviour
 
     void Start()
     {
+        
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
         MouseVisible = false;
