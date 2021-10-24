@@ -38,8 +38,12 @@ public class Movimiento : MonoBehaviour
     {
         
         //obtener imput
+
+        //imput movimiento personaje
         horizontalInput = Input.GetAxis("Horizontal") * vel;
         verticalInput = Input.GetAxis("Vertical") * vel;
+
+        //imputs movimiento camara
         x = Input.GetAxis("Mouse X") * sensivilidad;
         y = Input.GetAxis("Mouse Y") * sensivilidad ;
         xRotacion -= y;
@@ -49,11 +53,10 @@ public class Movimiento : MonoBehaviour
         FPSCamera.transform.localRotation = Quaternion.Euler(xRotacion, 0, 0);
         rb.transform.Rotate(0, x, 0);
 
-        
-        
-
         //movimiento
         rb.AddRelativeForce(new Vector3(horizontalInput, 0, verticalInput));
+
+
         if (Input.GetKeyDown("escape"))
         {
             if (MouseVisible)

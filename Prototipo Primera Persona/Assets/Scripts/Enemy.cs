@@ -13,11 +13,13 @@ public class Enemy : MonoBehaviour
     private Transform target;
     private Rigidbody rb;
     private bool alive;
+    private Manager manager;
     [SerializeField] private GameObject yo;
     [SerializeField] private Slider Vida;
 
     void Start()
     {
+        manager = FindObjectOfType<Manager>();
         alive = true;
         Vida.value = health;
         rb = GetComponent<Rigidbody>();
@@ -44,6 +46,7 @@ public class Enemy : MonoBehaviour
         Vida.value = health;
         if (alive && health <= 0)
         {
+            manager.EnemyDead();
             agent.enabled = rb.isKinematic = alive = false;
             rb.AddRelativeTorque(transform.right * 5,ForceMode.Impulse);
             StartCoroutine(DelayDestruccion(3));
@@ -54,6 +57,7 @@ public class Enemy : MonoBehaviour
     {
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(delay);
+        manager.Enemigos.Remove(yo);
         Destroy(yo);
     }
 }

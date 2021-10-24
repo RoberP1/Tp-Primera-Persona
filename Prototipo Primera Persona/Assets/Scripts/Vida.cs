@@ -7,11 +7,13 @@ public class Vida : MonoBehaviour
 {
     public float health = 100;
     [SerializeField] private Slider sVida;
+    [SerializeField] private Manager manager;
     public bool alive;
     private bool CanTakeDamage;
 
     void Start()
     {
+        manager = FindObjectOfType<Manager>();
         alive = true;
         CanTakeDamage = true;
     }
@@ -21,15 +23,21 @@ public class Vida : MonoBehaviour
         
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        
+        if (other.CompareTag("Enemy"))
+        {
+            if (CanTakeDamage)
+            {
+                Damage(20);
+                StartCoroutine(DelayDaño(1.5f));
+            } 
+        }
+    }
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.collider.CompareTag("Enemy") && CanTakeDamage)
-        {
-            Debug.Log("Entro en contacto con Enemy");
-            Damage(20);
-            StartCoroutine(DelayDaño(3));
-
-        }
+        
     }
     
     
@@ -42,10 +50,11 @@ public class Vida : MonoBehaviour
         if (alive && health <= 0)
         {
             alive = false;
+            manager.Vivo = false;
         }
     }
 
-    IEnumerator DelayDaño(int delay)
+    IEnumerator DelayDaño(float delay)
     {
         CanTakeDamage = false;
         yield return new WaitForSeconds(delay);
