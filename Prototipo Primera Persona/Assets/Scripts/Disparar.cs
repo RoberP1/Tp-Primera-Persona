@@ -41,7 +41,7 @@ public class Disparar : MonoBehaviour
     IEnumerator Retroceso(float delay)
     {
         
-        Cabeza.Disparo(0.1f);
+        Cabeza.Disparo(0.7f);
         yield return new WaitForSeconds(delay);
         Cabeza.Disparo(0);
     }

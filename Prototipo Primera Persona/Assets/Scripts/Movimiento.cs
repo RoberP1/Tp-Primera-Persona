@@ -41,24 +41,28 @@ public class Movimiento : MonoBehaviour
         //obtener imput
 
         //imput movimiento personaje
-        horizontalInput = Input.GetAxis("Horizontal") * vel * Time.fixedDeltaTime * 15;
-        verticalInput = Input.GetAxis("Vertical") * vel * Time.fixedDeltaTime * 15;
+        horizontalInput = Input.GetAxis("Horizontal") * vel ;
+        verticalInput = Input.GetAxis("Vertical") * vel ;
+
+
+        //movimiento personaje
+        rb.AddRelativeForce(new Vector3(horizontalInput, 0, verticalInput) * Time.deltaTime * 500f);
+
 
         //imputs movimiento camara
-        x = Input.GetAxis("Mouse X") * sensivilidad * Time.fixedDeltaTime * 15;
-        y = Input.GetAxis("Mouse Y") * sensivilidad * Time.fixedDeltaTime * 15;
+        x = Input.GetAxis("Mouse X") * sensivilidad;
+        y = Input.GetAxis("Mouse Y") * sensivilidad;
         xRotacion -= y;
         xRotacion -= disparo;
         
-        
         xRotacion = Mathf.Clamp(xRotacion, -90f, 41f);  //limitador de movimiento de camara
 
+        
         //movimiento camara
         FPSCamera.transform.localRotation = Quaternion.Euler(xRotacion, 0, 0);
         rb.transform.Rotate(0, x, 0);
 
-        //movimiento
-        rb.AddRelativeForce(new Vector3(horizontalInput, 0, verticalInput));
+        
 
 
         if (Input.GetKeyDown("escape"))
