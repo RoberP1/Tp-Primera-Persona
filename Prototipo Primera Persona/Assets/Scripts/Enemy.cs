@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
     {
         if (alive && Vector3.Distance(transform.position, target.position) < 100f)
             agent.SetDestination(target.position);
-        if (Vector3.Distance(transform.position, target.position) <= 1.8f)
+        if (Vector3.Distance(transform.position, target.position) <= 2.1f)
         { 
             if (CanMakeDamage && alive)
             {
