@@ -41,12 +41,12 @@ public class Movimiento : MonoBehaviour
         //obtener imput
 
         //imput movimiento personaje
-        horizontalInput = Input.GetAxis("Horizontal") * vel;
-        verticalInput = Input.GetAxis("Vertical") * vel;
+        horizontalInput = Input.GetAxis("Horizontal") * vel * Time.fixedDeltaTime * 15;
+        verticalInput = Input.GetAxis("Vertical") * vel * Time.fixedDeltaTime * 15;
 
         //imputs movimiento camara
-        x = Input.GetAxis("Mouse X") * sensivilidad;
-        y = Input.GetAxis("Mouse Y") * sensivilidad ;
+        x = Input.GetAxis("Mouse X") * sensivilidad * Time.fixedDeltaTime * 15;
+        y = Input.GetAxis("Mouse Y") * sensivilidad * Time.fixedDeltaTime * 15;
         xRotacion -= y;
         xRotacion -= disparo;
         
