@@ -1810,7 +1810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e394ca1d8d5a9454c87f2f83e79222ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vel: 2.5
+  vel: 3.5
   sensivilidad: 1
   FPSCamera: {fileID: 1903459161}
 --- !u!54 &906759942
@@ -2184,7 +2184,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 40}
-  m_SizeDelta: {x: 90, y: 5}
+  m_SizeDelta: {x: 90, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &994313693
 MonoBehaviour:
@@ -3484,7 +3484,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Encuentra y elemina todos los fantasmas de la zona utilizando tu Tottaly
+  m_Text: "Encuentra y elimina todos los fantasmas de la zona utilizando tu Tottaly
     Real Gun.\nRecuerda, precauci\xF3n al disparar"
 --- !u!222 &1565981893
 CanvasRenderer:

@@ -41,12 +41,12 @@ public class Movimiento : MonoBehaviour
         //obtener imput
 
         //imput movimiento personaje
-        horizontalInput = Input.GetAxis("Horizontal") * vel ;
-        verticalInput = Input.GetAxis("Vertical") * vel ;
+        horizontalInput = Input.GetAxis("Horizontal")  ;
+        verticalInput = Input.GetAxis("Vertical")  ;
 
 
         //movimiento personaje
-        rb.AddRelativeForce(new Vector3(horizontalInput, 0, verticalInput) * Time.deltaTime * 500f);
+        rb.AddRelativeForce(new Vector3(horizontalInput, 0, verticalInput).normalized * vel * Time.deltaTime * 500f);
 
 
         //imputs movimiento camara
