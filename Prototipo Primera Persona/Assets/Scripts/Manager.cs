@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
+using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
 {
@@ -23,15 +24,19 @@ public class Manager : MonoBehaviour
     public bool Vivo;
     public int kills;
 
-    
+    private bool MouseVisible;
+
+
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         Vivo = true;
         VictoriaPanel.SetActive(false);
         DerrotaPanel.SetActive(false);
         kills = 0;
         StartCoroutine(DelaySpawn(1f,Spawner1,EnemyPrefab,1));
-        
+        MouseVisible = false;
+
     }
 
     // Update is called once per frame
@@ -46,9 +51,24 @@ public class Manager : MonoBehaviour
             foreach (GameObject item in Enemigos)
             {
                 Destroy(item);
-                DerrotaPanel.SetActive(true);
+                
             }
-
+            DerrotaPanel.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            //SceneManager.LoadScene("Juego", LoadSceneMode.Single);
+        }
+        if (Input.GetKeyDown("escape") && Vivo)
+        {
+            if (MouseVisible)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                MouseVisible = false;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                MouseVisible = true;
+            }
         }
     }
 
@@ -93,4 +113,5 @@ public class Manager : MonoBehaviour
             Enemigos.Add(Instantiate(enemy, p, Quaternion.identity));
         }
     }
+
 }

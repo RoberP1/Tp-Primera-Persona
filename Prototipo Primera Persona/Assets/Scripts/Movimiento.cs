@@ -25,14 +25,14 @@ public class Movimiento : MonoBehaviour
 
     private float disparo = 0;
 
-    private bool MouseVisible;
+    
 
     void Start()
     {
         
         rb = GetComponent<Rigidbody>();
-        Cursor.lockState = CursorLockMode.Locked;
-        MouseVisible = false;
+        
+        
     }
     // Update is called once per frame
     void Update()
@@ -65,14 +65,7 @@ public class Movimiento : MonoBehaviour
         
 
 
-        if (Input.GetKeyDown("escape"))
-        {
-            if (MouseVisible)
-            {
-                Cursor.lockState = CursorLockMode.None;
-            } else Cursor.lockState = CursorLockMode.Locked;
-
-        }
+        
 
     }
 
