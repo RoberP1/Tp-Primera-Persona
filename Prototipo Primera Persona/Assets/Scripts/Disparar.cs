@@ -28,7 +28,7 @@ public class Disparar : MonoBehaviour
             }
             
             StartCoroutine(Cadencia(1f));
-            StartCoroutine(Retroceso(0.05f));
+            StartCoroutine(Retroceso(0.1f));
         }
     }
     IEnumerator Cadencia(float delay)
