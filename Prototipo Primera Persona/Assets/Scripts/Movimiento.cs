@@ -23,6 +23,8 @@ public class Movimiento : MonoBehaviour
     private float y;
     private float xRotacion;
 
+    private float disparo = 0;
+
     private bool MouseVisible;
 
     void Start()
@@ -32,7 +34,6 @@ public class Movimiento : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         MouseVisible = false;
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -47,6 +48,9 @@ public class Movimiento : MonoBehaviour
         x = Input.GetAxis("Mouse X") * sensivilidad;
         y = Input.GetAxis("Mouse Y") * sensivilidad ;
         xRotacion -= y;
+        xRotacion -= disparo;
+        
+        
         xRotacion = Mathf.Clamp(xRotacion, -90f, 41f);  //limitador de movimiento de camara
 
         //movimiento camara
@@ -66,5 +70,12 @@ public class Movimiento : MonoBehaviour
 
         }
 
+    }
+
+    public void Disparo(float fire)
+    {
+
+        disparo = fire;
+        
     }
 }

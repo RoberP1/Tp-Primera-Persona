@@ -13,6 +13,7 @@ public class Manager : MonoBehaviour
     [SerializeField] Transform Spawner1;
     [SerializeField] Transform Spawner2;
     [SerializeField] Transform Spawner3;
+    [SerializeField] Transform Spawner4;
     [SerializeField] Transform SpawnerBoss;
     [SerializeField] private GameObject EnemyPrefab;
 
@@ -65,12 +66,14 @@ public class Manager : MonoBehaviour
 
 
             case 3:
-                StartCoroutine(DelaySpawn(3f, Spawner3, EnemyPrefab, 3));
+                StartCoroutine(DelaySpawn(3f, Spawner3, EnemyPrefab, 1));
+                StartCoroutine(DelaySpawn(3f, Spawner4, EnemyPrefab, 2));
                 break;
 
 
             case 6:
-                StartCoroutine(DelaySpawn(3f, SpawnerBoss, EnemyPrefab, 4));
+                StartCoroutine(DelaySpawn(3f, SpawnerBoss, EnemyPrefab, 2));
+                StartCoroutine(DelaySpawn(3f, Spawner4, EnemyPrefab, 2));
                 break;
 
 
