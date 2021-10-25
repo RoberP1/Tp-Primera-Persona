@@ -11,6 +11,7 @@ public class Manager : MonoBehaviour
     [SerializeField] Text Tkills;
     [SerializeField] GameObject VictoriaPanel;
     [SerializeField] GameObject DerrotaPanel;
+    [SerializeField] GameObject ObjetivoPanel;
     [SerializeField] Transform Spawner1;
     [SerializeField] Transform Spawner2;
     [SerializeField] Transform Spawner3;
@@ -35,6 +36,7 @@ public class Manager : MonoBehaviour
         DerrotaPanel.SetActive(false);
         kills = 0;
         StartCoroutine(DelaySpawn(1f,Spawner1,EnemyPrefab,1));
+        StartCoroutine(DelayObjetivo(10f));
         MouseVisible = false;
 
     }
@@ -113,5 +115,10 @@ public class Manager : MonoBehaviour
             Enemigos.Add(Instantiate(enemy, p, Quaternion.identity));
         }
     }
-
+    private IEnumerator DelayObjetivo(float delay)
+    {
+        ObjetivoPanel.SetActive(true);
+        yield return new WaitForSeconds(delay);
+        ObjetivoPanel.SetActive(false);
+    }
 }
