@@ -27,9 +27,10 @@ public class Manager : MonoBehaviour
     {
         Vivo = true;
         VictoriaPanel.SetActive(false);
+        DerrotaPanel.SetActive(false);
         kills = 0;
         StartCoroutine(DelaySpawn(1f,Spawner1,EnemyPrefab,1));
-        //EnemyPrefab.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -86,7 +87,6 @@ public class Manager : MonoBehaviour
         {
             float position = rnd.Next(-3, 3);
             Vector3 p = spawner.position + new Vector3(position, 0, position);
-            //Instantiate(enemy, p, Quaternion.identity);
             Enemigos.Add(Instantiate(enemy, p, Quaternion.identity));
         }
     }

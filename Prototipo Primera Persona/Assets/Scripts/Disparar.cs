@@ -5,6 +5,7 @@ using UnityEngine;
 public class Disparar : MonoBehaviour
 {
     [SerializeField] private Camera playerCamera;
+    private bool CanShoot = true;
     
     // Start is called before the first frame update
     void Start()
@@ -17,14 +18,19 @@ public class Disparar : MonoBehaviour
     {
 
         if (Input.GetMouseButtonDown(0) && Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out RaycastHit hit)
-            && hit.collider.gameObject.CompareTag("Enemy"))
-        {
-            Debug.Log("Toco enemigo");
+            && hit.collider.gameObject.CompareTag("Enemy") && CanShoot)
+        {   
             bool headshot = hit.collider.gameObject.name.Contains("Cabeza");
             Enemy enemy = hit.collider.GetComponentInParent<Enemy>();
-            Debug.Log("Headshot" + headshot);
+
             enemy.Damage(headshot ? 50f : 20f);
-           
+            StartCoroutine(Cadencia(1f));
         }
+    }
+    IEnumerator Cadencia(float delay)
+    {
+        CanShoot = false;
+        yield return new WaitForSeconds(delay);
+        CanShoot = true;
     }
 }

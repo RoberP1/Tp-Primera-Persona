@@ -43,22 +43,19 @@ public class Enemy : MonoBehaviour
     {
         if (alive && Vector3.Distance(transform.position, target.position) < 100f)
             agent.SetDestination(target.position);
-    }
-
-   
-
-    private void OnTriggerStay(Collider other)
-    {
-
-        if (other.CompareTag("Player"))
-        {
-            if (CanMakeDamage)
+        if (Vector3.Distance(transform.position, target.position) <= 1.8f)
+        { 
+            if (CanMakeDamage && alive)
             {
                 player.Damage(20);
                 StartCoroutine(DelayDaño(1.5f));
             }
         }
     }
+
+   
+
+
 
     public void Damage(float damage)
     {
@@ -67,7 +64,6 @@ public class Enemy : MonoBehaviour
         if (alive && health <= 0)
         {
             manager.EnemyDead();
-            CanMakeDamage = false;
             agent.enabled = rb.isKinematic = alive = false;
             rb.AddRelativeTorque(transform.right * 5,ForceMode.Impulse);
             StartCoroutine(DelayDestruccion(3));
