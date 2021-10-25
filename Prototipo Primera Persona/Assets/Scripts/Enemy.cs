@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,25 +7,29 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-
-
     private float health = 100f;
     private NavMeshAgent agent;
     private Transform target;
+    private Vida player;
     private Rigidbody rb;
     private bool alive;
     private Manager manager;
     [SerializeField] private GameObject yo;
     [SerializeField] private Slider Vida;
 
+    private bool CanMakeDamage;
+
     void Start()
     {
         manager = FindObjectOfType<Manager>();
+        player = FindObjectOfType<Vida>();
         alive = true;
         Vida.value = health;
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         target = FindObjectOfType<Movimiento>().transform;
+        CanMakeDamage = true;
+        
     }
 
     public void ItsAlive()
@@ -40,6 +45,21 @@ public class Enemy : MonoBehaviour
             agent.SetDestination(target.position);
     }
 
+   
+
+    private void OnTriggerStay(Collider other)
+    {
+
+        if (other.CompareTag("Player"))
+        {
+            if (CanMakeDamage)
+            {
+                player.Damage(20);
+                StartCoroutine(DelayDaño(1.5f));
+            }
+        }
+    }
+
     public void Damage(float damage)
     {
         health -= damage;
@@ -47,6 +67,7 @@ public class Enemy : MonoBehaviour
         if (alive && health <= 0)
         {
             manager.EnemyDead();
+            CanMakeDamage = false;
             agent.enabled = rb.isKinematic = alive = false;
             rb.AddRelativeTorque(transform.right * 5,ForceMode.Impulse);
             StartCoroutine(DelayDestruccion(3));
@@ -59,5 +80,11 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(delay);
         manager.Enemigos.Remove(yo);
         Destroy(yo);
+    }
+    public IEnumerator DelayDaño(float delay)
+    {
+        CanMakeDamage = false;
+        yield return new WaitForSeconds(delay);
+        CanMakeDamage = true;
     }
 }

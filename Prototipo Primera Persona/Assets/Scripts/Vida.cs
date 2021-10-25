@@ -9,36 +9,16 @@ public class Vida : MonoBehaviour
     [SerializeField] private Slider sVida;
     [SerializeField] private Manager manager;
     public bool alive;
-    private bool CanTakeDamage;
+    
 
     void Start()
     {
         manager = FindObjectOfType<Manager>();
         alive = true;
-        CanTakeDamage = true;
-    }
-
-    void Update()
-    {
         
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        
-        if (other.CompareTag("Enemy"))
-        {
-            if (CanTakeDamage)
-            {
-                Damage(20);
-                StartCoroutine(DelayDaño(1.5f));
-            } 
-        }
-    }
-    private void OnCollisionStay(Collision collision)
-    {
-        
-    }
+ 
     
     
 
@@ -54,10 +34,5 @@ public class Vida : MonoBehaviour
         }
     }
 
-    IEnumerator DelayDaño(float delay)
-    {
-        CanTakeDamage = false;
-        yield return new WaitForSeconds(delay);
-        CanTakeDamage = true;
-    }
+
 }
