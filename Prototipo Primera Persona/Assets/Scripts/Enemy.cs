@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
         {
             manager.EnemyDead();
             agent.enabled = rb.isKinematic = alive = false;
-            rb.AddRelativeTorque(transform.right * 5,ForceMode.Impulse);
+            rb.AddRelativeTorque(Vector3.right* -5,ForceMode.Impulse);
             StartCoroutine(DelayDestruccion(3));
         }
     }
