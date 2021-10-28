@@ -47,6 +47,7 @@ public class Manager : MonoBehaviour
         if (kills == 10)
         {
             VictoriaPanel.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
         }
         if (!Vivo)
         {
