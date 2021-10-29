@@ -35,42 +35,7 @@ public class Movimiento : MonoBehaviour
         
     }
     // Update is called once per frame
-    void Update()
-    {
-        /*
-        //obtener imput
 
-        //imput movimiento personaje
-        horizontalInput = Input.GetAxis("Horizontal")  ;
-        verticalInput = Input.GetAxis("Vertical")  ;
-
-
-        //movimiento personaje
-        rb.AddRelativeForce(new Vector3(horizontalInput, 0, verticalInput).normalized * vel * Time.deltaTime * 500f);
-
-
-        //imputs movimiento camara
-        x = Input.GetAxis("Mouse X") * sensivilidad;
-        y = Input.GetAxis("Mouse Y") * sensivilidad;
-        xRotacion -= y;
-        xRotacion -= disparo;
-       
-
-
-
-        xRotacion = Mathf.Clamp(xRotacion, -90f, 41f);  //limitador de movimiento de camara
-
-        
-        //movimiento camara
-        FPSCamera.transform.localRotation = Quaternion.Euler(xRotacion , 0, 0);
-        rb.transform.Rotate(0, x * Time.deltaTime * 250, 0);
-
-        
-        */
-
-        
-
-    }
     void FixedUpdate()
     {
 

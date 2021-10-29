@@ -767,7 +767,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &635199227
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1830,8 +1830,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e394ca1d8d5a9454c87f2f83e79222ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vel: 3.5
-  sensivilidad: 1
+  vel: 45
+  sensivilidad: 5
   FPSCamera: {fileID: 1903459161}
 --- !u!54 &906759942
 Rigidbody:
@@ -1884,6 +1884,7 @@ MonoBehaviour:
   Rojo: {fileID: 2100000, guid: efed687ed4a95a64e9d4b620b336d47b, type: 2}
   Verde: {fileID: 2100000, guid: dfd99016c0232de4ba34c265a507d4f0, type: 2}
   CanShoot: 1
+  R: 1.7
 --- !u!114 &906759945
 MonoBehaviour:
   m_ObjectHideFlags: 0
