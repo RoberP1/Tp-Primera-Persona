@@ -13,6 +13,7 @@ public class Disparar : MonoBehaviour
     [SerializeField] private Material Rojo;
     [SerializeField] private Material Verde;
     public bool CanShoot = true;
+    public float R = 1.7f;
     
     // Start is called before the first frame update
     void Start()
@@ -59,7 +60,7 @@ public class Disparar : MonoBehaviour
     IEnumerator Retroceso(float delay)
     {
         
-        Cabeza.Disparo(0.7f);
+        Cabeza.Disparo(R);
         yield return new WaitForSeconds(delay);
         Cabeza.Disparo(0);
     }
