@@ -6,6 +6,8 @@ public class Disparar : MonoBehaviour
 {
     [SerializeField] private Camera playerCamera;
     [SerializeField] private Movimiento Cabeza;
+    [SerializeField] private AudioSource Shot;
+    [SerializeField] private AudioSource Reload;
     private bool CanShoot = true;
     
     // Start is called before the first frame update
@@ -28,14 +30,25 @@ public class Disparar : MonoBehaviour
             }
             
             StartCoroutine(Cadencia(1f));
+            StartCoroutine(Sonido(0.5f));
             StartCoroutine(Retroceso(0.1f));
         }
     }
     IEnumerator Cadencia(float delay)
     {
+        Shot.Play();
         CanShoot = false;
         yield return new WaitForSeconds(delay);
+        
         CanShoot = true;
+
+    }
+    IEnumerator Sonido(float delay)
+    {
+        
+        yield return new WaitForSeconds(delay);
+        Reload.Play();
+        
 
     }
     IEnumerator Retroceso(float delay)
