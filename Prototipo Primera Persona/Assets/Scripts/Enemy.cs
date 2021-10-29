@@ -61,12 +61,18 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
         Vida.value = health;
+        
         if (alive && health <= 0)
         {
             manager.EnemyDead();
-            agent.enabled = rb.isKinematic = alive = false;
+            agent.enabled = rb.isKinematic = alive = rb.freezeRotation = false;
+
             rb.AddRelativeTorque(Vector3.right* -5,ForceMode.Impulse);
             StartCoroutine(DelayDestruccion(3));
+        }
+        else if (health >= 0)
+        {
+            StartCoroutine(MoverAtras(0.5f));
         }
     }
 
@@ -82,5 +88,14 @@ public class Enemy : MonoBehaviour
         CanMakeDamage = false;
         yield return new WaitForSeconds(delay);
         CanMakeDamage = true;
+    }
+    public IEnumerator MoverAtras(float delay)
+    {
+        rb.isKinematic = false;
+        rb.freezeRotation = true;
+        rb.AddRelativeForce(-Vector3.forward * 50, ForceMode.Impulse);
+        yield return new WaitForSeconds(delay);
+        rb.isKinematic = false;
+        rb.freezeRotation = true;
     }
 }
