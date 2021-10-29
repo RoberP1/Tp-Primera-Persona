@@ -5,9 +5,13 @@ using UnityEngine;
 public class Disparar : MonoBehaviour
 {
     [SerializeField] private Camera playerCamera;
-    [SerializeField] private Movimiento Cabeza;
+    private Movimiento Cabeza;
     [SerializeField] private AudioSource Shot;
     [SerializeField] private AudioSource Reload;
+
+    [SerializeField] private GameObject UIReload;
+    [SerializeField] private Material Rojo;
+    [SerializeField] private Material Verde;
     private bool CanShoot = true;
     
     // Start is called before the first frame update
@@ -30,7 +34,7 @@ public class Disparar : MonoBehaviour
             }
             
             StartCoroutine(Cadencia(1f));
-            StartCoroutine(Sonido(0.5f));
+            StartCoroutine(Recarga(0.5f));
             StartCoroutine(Retroceso(0.1f));
         }
     }
@@ -38,12 +42,13 @@ public class Disparar : MonoBehaviour
     {
         Shot.Play();
         CanShoot = false;
+        UIReload.GetComponent<MeshRenderer>().material = Rojo;
         yield return new WaitForSeconds(delay);
-        
+        UIReload.GetComponent<MeshRenderer>().material = Verde;
         CanShoot = true;
 
     }
-    IEnumerator Sonido(float delay)
+    IEnumerator Recarga(float delay)
     {
         
         yield return new WaitForSeconds(delay);
