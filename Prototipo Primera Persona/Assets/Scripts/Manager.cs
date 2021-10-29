@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class Manager : MonoBehaviour
 {
     [SerializeField] Text Tkills;
+     
     [SerializeField] GameObject VictoriaPanel;
     [SerializeField] GameObject DerrotaPanel;
     [SerializeField] GameObject ObjetivoPanel;
@@ -27,6 +28,7 @@ public class Manager : MonoBehaviour
 
     private bool MouseVisible;
 
+    private Disparar disparo;
 
     void Start()
     {
@@ -38,6 +40,7 @@ public class Manager : MonoBehaviour
         StartCoroutine(DelaySpawn(1f,Spawner1,EnemyPrefab,1));
         StartCoroutine(DelayObjetivo(10f));
         MouseVisible = false;
+        disparo = FindObjectOfType<Disparar>();
 
     }
 
@@ -48,6 +51,8 @@ public class Manager : MonoBehaviour
         {
             VictoriaPanel.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
+            disparo.CanShoot = false;
+            
         }
         if (!Vivo)
         {
@@ -58,6 +63,7 @@ public class Manager : MonoBehaviour
             }
             DerrotaPanel.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
+            disparo.CanShoot = false;
             //SceneManager.LoadScene("Juego", LoadSceneMode.Single);
         }
         if (Input.GetKeyDown("escape") && Vivo)

@@ -12,7 +12,7 @@ public class Disparar : MonoBehaviour
     [SerializeField] private GameObject UIReload;
     [SerializeField] private Material Rojo;
     [SerializeField] private Material Verde;
-    private bool CanShoot = true;
+    public bool CanShoot = true;
     
     // Start is called before the first frame update
     void Start()
